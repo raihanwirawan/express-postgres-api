@@ -1,11 +1,16 @@
+require("dotenv").config();
 
 const express = require("express");
+
 const fs = require("fs")
+
 const playersRoute = require("./routes/players");
+
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-const pool = require("./db");
+const pool = require("./config/db");
 
 let players = JSON.parse(
 	fs.readFileSync("players.json")
@@ -120,9 +125,10 @@ app.use((req, res) => {
     res.status(404).json({
         error: "Route Not Found"
    });
+})
 
-});
+app.use(errorHandler);
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 8000, () => {
         console.log("Server Activated")
 })

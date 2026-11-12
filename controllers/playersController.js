@@ -54,16 +54,16 @@ async function getPlayer(req, res){
 async function createPlayer(req,res){
 
    try {
-             const { name, rank = "Apprentice", joined }
+             const { name, rank = "Apprentice", weapon_id = 6 }
         = req.body;
 
              const result = await
         pool.query(
                        `INSERT INTO players
-                (name, rank, joined)
-                        VALUES ($1, $2, $3)
+                (name, rank, weapon_id)
+                        VALUES ($1, $2, $3 )
                         RETURNING *`,
-                        [name, rank, joined]
+                        [name, rank, weapon_id]
                       );
 
         res.status(201).json(result.rows[0]);

@@ -299,7 +299,6 @@ The application uses Docker Compose to run the Express API and PostgreSQL databa
  ├── compose.yaml
  ├── package.json
  ├── package-lock.json
- ├── players.json
  ├── README.md
  └── server.js
 ```

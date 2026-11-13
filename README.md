@@ -282,6 +282,7 @@ The application uses Docker Compose to run the Express API and PostgreSQL databa
 
 ## Project Structure
 
+ ```text
  express-postgres-api/
  ├── config/
  │   └── db.js
@@ -301,6 +302,7 @@ The application uses Docker Compose to run the Express API and PostgreSQL databa
  ├── players.json
  ├── README.md
  └── server.js
+```
 
 ### Directory Overview
 

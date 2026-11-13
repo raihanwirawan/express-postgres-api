@@ -15,7 +15,7 @@ services:
     container_name: project8-db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: dragon123
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: game_db
     volumes:
       - postgres_data:/var/lib/postgresql/data

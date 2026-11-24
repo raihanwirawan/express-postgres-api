@@ -237,7 +237,7 @@ The application uses Docker Compose to run the Express API and PostgreSQL databa
    BACKUP_FILE="backups/game_db_$(date +%F_%H%M%S).sql"
    TEMP_FILE="${BACKUP_FILE}.tmp"
 
-   if sudo docker exec project8-db pg_dump -U postgres -d game_db > "$TEMP_FILE" && test -s "$TEMP_FILE"; then
+   if sudo docker compose exec -T postgres pg_dump -U postgres -d game_db > "$TEMP_FILE" && test -s "$TEMP_FILE"; then
       mv "$TEMP_FILE" "$BACKUP_FILE"
       echo "Backup completed successfully: $BACKUP_FILE"
       ls -lh "$BACKUP_FILE"
@@ -255,11 +255,11 @@ The application uses Docker Compose to run the Express API and PostgreSQL databa
 
  Create the test database:
    ```bash
-   sudo docker exec project8-db createdb -U postgres game_db_restore_test
+   sudo docker compose exec -T postgres createdb -U postgres game_db_restore_test
    ```
  Restore the backup using the actual backup filename:
    ```bash
-   sudo docker exec -i project8-db psql -X -v ON_ERROR_STOP=1 -U postgres -d game_db_restore_test < backups/game_db_YYYY-MM-DD_HHMMSS.sql
+   sudo docker compose exec -T postgres psql -X -v ON_ERROR_STOP=1 -U postgres -d game_db_restore_test < backups/game_db_YYYY-MM-DD_HHMMSS.sql
    ```
  Replace `game_db_YYYY-MM-DD_HHMMSS.sql` with the actual filename in the `backups/` directory.
 
